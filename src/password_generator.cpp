@@ -26,6 +26,7 @@ std::size_t password_generator::get_length() const {
 
 void password_generator::set_options(const unsigned char & opt) {
     if(opt == 0) throw std::invalid_argument("Password can't exist from no one character");
+    if(!(opt & 0b00001111)) throw std::invalid_argument("Your parametrs don't have no one correct option");
     p_opt = opt;
 }
 
@@ -36,6 +37,8 @@ unsigned char password_generator::get_options() const {
 bool password_generator::set_option(const password_option & opt, const bool & value) {
     if(value) p_opt = p_opt | opt;
     else p_opt = p_opt & (~opt);
+
+    set_options(p_opt);
 
     return (get_option(opt) == value);
 }

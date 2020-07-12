@@ -31,10 +31,10 @@ void print_help(std::ostream & os) {
     os << "\t-d\tView debug output\n";
     os << "\t-h\tShow this help text and exit\n";
     os << "\t-v\tShow program version and exit\n";
-    os << "\t-c [N]\tGenerate N passwords\n";
-    os << "\t-l [N]\tSet the generated passwords length as N\n";
+    os << "\t-c [N]\tGenerate N passwords (default 1)\n";
+    os << "\t-l [N]\tSet the generated passwords length as N (default 16)\n";
     os << "\t-o [F]\tSet an output file as F\n";
-    os << "\t-p [P]\tSet the generated passwords parameters as P\n\n";
+    os << "\t-p [P]\tSet the generated passwords parameters as P (default 1111)\n\n";
 
     os << "[PASSWORDS PARAMETRS]\n";
     os << "\tTo create a parameter string, use the \"Logical OR\"\n\t\t operation with the necessary parameter codes\n\n";

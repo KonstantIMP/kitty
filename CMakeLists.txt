@@ -32,3 +32,5 @@ endif()
 
 add_executable(kitty src/main.cpp include/password_generator.hpp src/password_generator.cpp
                         include/defines.hpp include/kitty.hpp src/kitty.cpp)
+
+install(TARGETS kitty DESTINATION "/usr/bin/")
