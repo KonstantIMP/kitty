@@ -35,8 +35,8 @@ unsigned char password_generator::get_options() const {
 }
 
 bool password_generator::set_option(const password_option & opt, const bool & value) {
-    if(value) p_opt = p_opt | opt;
-    else p_opt = p_opt & (~opt);
+    if(value) p_opt = p_opt | static_cast<unsigned char>(opt);
+    else p_opt = static_cast<unsigned char>(p_opt & (~(static_cast<unsigned char>(opt))));
 
     set_options(p_opt);
 

@@ -42,11 +42,11 @@ int main(int argc, char * argv[]) {
 
             try {
                 length = static_cast<std::size_t>(std::stoi(argv[i + 1]));
-            }  catch (std::invalid_argument e) {
+            }  catch (std::invalid_argument& e) {
                 std::cout << "[ERROR #10] Incorrect command line arguments\n";
                 std::cout << "\twhat() : " << e.what() << " [can't translate string to number]\n";
                 return 10;
-            }  catch (std::out_of_range e) {
+            }  catch (std::out_of_range& e) {
                 std::cout << "[ERROR #20] Incorrect command line argument\n";
                 std::cout << "\twhat() : " << e.what() << " [number is too big]\n";
                 return 20;
@@ -70,7 +70,7 @@ int main(int argc, char * argv[]) {
             try {
                 fout.open(std::string(argv[i + 1]), std::ios_base::out | std::ios_base::app);
                 if(!fout.is_open()) throw std::ios_base::failure("std::ofstream::open");
-            }  catch (std::ios_base::failure e) {
+            }  catch (std::ios_base::failure& e) {
                 std::cout << "[ERROR #40] Runtime error\n";
                 std::cout << "\twhat() : " << e.what() << " [can't open or create \'" << std::string(argv[i + 1]) << "\']\n";
                 return 40;
@@ -93,11 +93,11 @@ int main(int argc, char * argv[]) {
 
             try {
                 num = static_cast<std::size_t>(std::stoi(argv[i + 1]));
-            }  catch (std::invalid_argument e) {
+            }  catch (std::invalid_argument& e) {
                 std::cout << "[ERROR #11] Incorrect command line argument\n";
                 std::cout << "\twhat() : " << e.what() << " [can't translate string to number]\n";
                 return 11;
-            }  catch (std::out_of_range e) {
+            }  catch (std::out_of_range& e) {
                 std::cout << "[ERROR #21] Incorrect command line argument\n";
                 std::cout << "\twhat() : " << e.what() << " [number is too big]\n";
                 return 21;
@@ -119,11 +119,11 @@ int main(int argc, char * argv[]) {
 
             try {
                 opt = static_cast<unsigned char>(std::stoi(argv[i + 1], 0, 2));
-            }  catch (std::invalid_argument e) {
+            }  catch (std::invalid_argument& e) {
                 std::cout << "[ERROR #12] Incorrect command line argument\n";
                 std::cout << "\twhat() : " << e.what() << " [can't translate string to number]\n";
                 return 12;
-            }  catch (std::out_of_range e) {
+            }  catch (std::out_of_range& e) {
                 std::cout << "[ERROR #22] Incorrect command line argument\n";
                 std::cout << "\twhat() : " << e.what() << " [number is too big]\n";
                 return 22;
@@ -138,7 +138,7 @@ int main(int argc, char * argv[]) {
     try {
         gen.set_length(length);
         gen.set_options(opt);
-    }  catch (std::invalid_argument e) {
+    }  catch (std::invalid_argument& e) {
         std::cout << "[ERROR #134] Incorrect command line argument and logical errors\n";
         std::cout << "\twhat() : " << e.what() << '\n';
         return 134;
@@ -150,11 +150,11 @@ int main(int argc, char * argv[]) {
         gen.gen_passwd(debug);
         try {
             passwords.push_back(gen.get_passwd());
-        }  catch (std::bad_alloc e) {
+        }  catch (std::bad_alloc& e) {
             std::cout << "[ERROR #41] Runtime error\n";
             std::cout << "\twhat() : " << e.what() << " [can't allocate memory foe password storage]\n";
             return 41;
-        }  catch (std::runtime_error e) {
+        }  catch (std::runtime_error& e) {
             std::cout << "[ERROR #42] Runtime error\n";
             std::cout << "\twhat() : " << e.what() << '\n';
             return 42;
