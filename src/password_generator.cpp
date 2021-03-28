@@ -1,5 +1,16 @@
 #include "../include/password_generator.hpp"
 
+#include <random>
+
+int mersen_rand() {
+    std::random_device dev;
+    std::mt19937 rng(dev());
+
+    std::uniform_int_distribution<std::mt19937::result_type> dist6(1, 32767);
+
+    return static_cast<int>(dist6(rng));
+}
+
 std::array<char, 26> uppercase {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I',
                                 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R',
                                 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
@@ -133,10 +144,11 @@ bool password_generator::gen_passwd(const bool & debug) {
 
     std::size_t up_n = 0, low_n = 0, num_n = 0, spec_n = 0;
 
-    if(debug) std::clog << "[DEBUG] Delay for randomization\n\n";
-    std::this_thread::sleep_for(std::chrono::seconds(1));
-
-    srand(static_cast<unsigned int>(time(nullptr)));
+    if(debug) std::clog << "[DEBUG] Randomization\n\n";
+    
+    time_t * time_randomizator = new time_t;
+    srand(static_cast<unsigned int>(time(time_randomizator)));
+    delete time_randomizator;
 
     if(min_length == 1) {
         if(get_option(UPPERCASE)) up_n = p_length;
@@ -160,7 +172,7 @@ bool password_generator::gen_passwd(const bool & debug) {
             second = std::unique_ptr<std::size_t>{&spec_n};
         }
 
-        (*first) = (static_cast<std::size_t>(rand()) % (p_length - 2)) + 1;
+        (*first) = (static_cast<std::size_t>(mersen_rand()) % (p_length - 2)) + 1;
         (*second) = p_length - (*first);
 
         first.release(); second.release();
@@ -179,16 +191,16 @@ bool password_generator::gen_passwd(const bool & debug) {
         }
         else third = std::unique_ptr<std::size_t>{&spec_n};
 
-        (*first) = (static_cast<std::size_t>(rand()) % (p_length - 3)) + 1;
-        (*second) = (static_cast<std::size_t>(rand()) % (p_length - 2 - *first)) + 1;
+        (*first) = (static_cast<std::size_t>(mersen_rand()) % (p_length - 3)) + 1;
+        (*second) = (static_cast<std::size_t>(mersen_rand()) % (p_length - 2 - *first)) + 1;
         (*third) = p_length - ((*first) + (*second));
 
         first.release(); second.release(); third.release();
     }
     else {
-        up_n = (static_cast<std::size_t>(rand()) % (p_length - 4)) + 1;
-        low_n = (static_cast<std::size_t>(rand()) % (p_length - up_n - 3)) + 1;
-        num_n = (static_cast<std::size_t>(rand()) % (p_length - up_n - low_n - 2)) + 1;
+        up_n = (static_cast<std::size_t>(mersen_rand()) % (p_length - 4)) + 1;
+        low_n = (static_cast<std::size_t>(mersen_rand()) % (p_length - up_n - 3)) + 1;
+        num_n = (static_cast<std::size_t>(mersen_rand()) % (p_length - up_n - low_n - 2)) + 1;
         spec_n = p_length - (up_n + low_n + num_n);
     }
 
@@ -225,10 +237,10 @@ bool password_generator::gen_passwd(const bool & debug) {
 
     passwd = "";
 
-    for(std::size_t i{0}; i < up_n; i++) passwd += uppercase[static_cast<std::size_t>(rand()) % uppercase.size()];
-    for(std::size_t i{0}; i < low_n; i++) passwd += lowercase[static_cast<std::size_t>(rand()) % lowercase.size()];
-    for(std::size_t i{0}; i < num_n; i++) passwd += numeral[static_cast<std::size_t>(rand()) % numeral.size()];
-    for(std::size_t i{0}; i < spec_n; i++) passwd += special[static_cast<std::size_t>(rand()) % special.size()];
+    for(std::size_t i{0}; i < up_n; i++) passwd += uppercase[static_cast<std::size_t>(mersen_rand()) % uppercase.size()];
+    for(std::size_t i{0}; i < low_n; i++) passwd += lowercase[static_cast<std::size_t>(mersen_rand()) % lowercase.size()];
+    for(std::size_t i{0}; i < num_n; i++) passwd += numeral[static_cast<std::size_t>(mersen_rand()) % numeral.size()];
+    for(std::size_t i{0}; i < spec_n; i++) passwd += special[static_cast<std::size_t>(mersen_rand()) % special.size()];
 
     if(debug) std::clog << "[DEBUG] First password generation : " << passwd << "\n\n";
 
