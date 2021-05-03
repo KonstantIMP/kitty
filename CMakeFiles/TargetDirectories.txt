@@ -1,7 +1,0 @@
-/home/kimp/Projects/kitty/CMakeFiles/install/strip.dir
-/home/kimp/Projects/kitty/CMakeFiles/install/local.dir
-/home/kimp/Projects/kitty/CMakeFiles/install.dir
-/home/kimp/Projects/kitty/CMakeFiles/list_install_components.dir
-/home/kimp/Projects/kitty/CMakeFiles/rebuild_cache.dir
-/home/kimp/Projects/kitty/CMakeFiles/edit_cache.dir
-/home/kimp/Projects/kitty/CMakeFiles/kitty.dir
