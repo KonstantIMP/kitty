@@ -1,4 +1,4 @@
-//Copyright 2020 KonstantIMP
+//Copyright 2021 KonstantIMP
 //
 //Licensed under the Apache License, Version 2.0 (the "License");
 //you may not use this file except in compliance with the License.
@@ -12,17 +12,13 @@
 //See the License for the specific language governing permissions and
 //limitations under the License.
 
-#ifndef DEFINES_HPP
-#define DEFINES_HPP
+#ifndef KITTY_HPP
+#define KITTY_HPP
 
-#include <cstddef>
-#include <string>
+#include <iostream>
 
-const std::size_t major_ver{1};
-const std::size_t minor_ver{0};
-const std::size_t build_ver{2};
+void print_hello(std::ostream &);
 
-const std::string str_version = std::to_string(major_ver) + '.' + std::to_string(minor_ver) + '.' +
-                                std::to_string(build_ver) + " (build " + std::to_string(build_ver) + ")";
+void print_help(std::ostream &);
 
-#endif // DEFINES_HPP
+#endif // KITTY_HPP

@@ -1,4 +1,4 @@
-//Copyright 2020 KonstantIMP
+//Copyright 2021 KonstantIMP
 //
 //Licensed under the Apache License, Version 2.0 (the "License");
 //you may not use this file except in compliance with the License.
@@ -12,8 +12,8 @@
 //See the License for the specific language governing permissions and
 //limitations under the License.
 
-#include "../include/defines.hpp"
-#include "../include/kitty.hpp"
+#include "defines.hpp"
+#include "kitty.hpp"
 
 void print_hello(std::ostream & os) {
     os << "\t\t    __      _    __     __          \n";
